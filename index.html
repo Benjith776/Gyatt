@@ -1,27 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OOGA BOOGA</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Emre</title>
+  <style>
+    /* Base */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      overflow-x: hidden;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(-45deg, #ff4d4d, #ff8c66, #ff4d4d);
+      background-size: 400% 400%;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      animation: gradientShift 8s ease infinite;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: white;
+      left: 0;
+      bottom: -2px;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s ease both;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    img {
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    hr {
+      margin: 40px 0;
+      border: none;
+      height: 1px;
+      background: #ddd;
+      animation: slideIn 1s ease both;
+    }
+    h1 {
+      font-size: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid rgba(255,255,255,0.75);
+      animation: typing 4s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
+    }
+    h2 {
+      color: #ff4d4d;
+      margin-top: 60px;
+    }
+    p {
+      line-height: 1.6;
+      margin: 20px 0;
+    }
+    a {
+      color: #0066cc;
+      font-weight: bold;
+      text-decoration: none;
+      position: relative;
+    }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #0066cc;
+      left: 0;
+      bottom: -2px;
+      transition: width 0.3s ease;
+    }
+    a:hover::after {
+      width: 100%;
+    }
+    /* Back to top */
+    #toTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff4d4d;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    #toTop:hover {
+      background: #ff1a1a;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: #333;
+      color: white;
+      animation: fadeIn 1s ease both;
+    }
+    footer a {
+      color: #ff8c66;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    /* Carousel */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-item img {
+      width: 100%;
+      display: block;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    /* Keyframes */
+    @keyframes gradientShift {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideIn {from{width:0}to{width:100%}}
+    @keyframes typing {from{width:0}to{width:100%}} @keyframes blink{50%{border-color:transparent}}
+  </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: rgb(255, 0, 0);">This website was designed by Emre!</h1>
+  <header>
+    <h1>This website was designed by Emre!</h1>
+    <nav>
+      <a href="#bio">Bio</a>
+      <a href="#links">Links</a>
+      <a href="#lego">Hobby</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <p>
-        Альцесте Де Амбрис (15 сентября 1874 — 9 декабря 1934) — итальянский журналист,
-        социалист и профсоюзный деятель, считающийся одним из величайших представителей
-        революционного синдикализма в Италии. В 18 лет он примкнул к социалистическому
-        движению, став активистом и пропагандистом Итальянской социалистической партии.
-    </p>
-
-    <img src="https://static.wikia.nocookie.net/villainsfanon/images/4/4e/Troll-Face-Meme-PNG.png/revision/latest/scale-to-width-down/1200?cb=20240803095204" width="200" alt=""> <img src="https://images2.minutemediacdn.com/image/upload/c_crop,x_0,y_0,w_4185,h_2354/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/images/GettyImages/mmsport/mentalfloss/01jq81d60gkx5039qgfp.jpg" height="150" width="200" alt="">
+  <main>
+    <section id="bio" class="reveal">
+      <h2>About</h2>
+      <p>Альцесте Де Амбрис (15 сентября 1874 — 9 декабря 1934) — итальянский журналист, социалист и профсоюзный деятель, считающийся одним из величайших представителей революционного синдикализма в Италии. В 18 лет он примкнул к социалистическому движению, став активистом и пропагандистом Итальянской социалистической партии.</p>
+    </section>
 
     <hr>
-    <h2>Links</h2>
 
-    <a target="_blank" href="https://www.wikipedia.org/">KNOWLEDGE!!!!</a>
+    <section id="links" class="reveal">
+      <h2>Links</h2>
+      <p><a href="https://www.wikipedia.org/" target="_blank">KNOWLEDGE!!!!</a></p>
+    </section>
 
+    <hr>
+
+    <section id="lego" class="reveal">
+      <h2>Hobby: LEGO</h2>
+      <p>One of Emre's favorite hobbies is building with LEGO. It's a fun and creative way to relax while also engaging in problem-solving and design. Whether it's constructing detailed architecture sets or creating custom models from imagination, LEGO provides endless possibilities for creativity and innovation.</p>
+      <div class="carousel">
+        <button class="carousel-btn prev">‹</button>
+        <div class="carousel-track">
+          <div class="carousel-item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/330px-LEGO_logo.svg.png" alt="LEGO"></div>
+          <div class="carousel-item"><img src="https://images.lego.com/mini/sets/21321-1.png" alt="LEGO Creative"></div>
+          <div class="carousel-item"><img src="https://images.lego.com/mini/sets/21050-1.png" alt="LEGO Architecture"></div>
+        </div>
+        <button class="carousel-btn next">›</button>
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="contact" class="reveal">
+      <h2>Contact</h2>
+      <p>Feel free to reach out on social media:</p>
+      <p><a href="#">Twitter</a> | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Emre. Designed with ❤️.</p>
+  </footer>
+
+  <button id="toTop">↑</button>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.2 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Back to top button
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Carousel functionality
+    const track = document.querySelector('.carousel-track');
+    const items = Array.from(track.children);
+    let index = 0;
+    document.querySelector('.carousel-btn.next').addEventListener('click', () => {
+      index = (index + 1) % items.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    });
+    document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
+      index = (index - 1 + items.length) % items.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    });
+  </script>
 </body>
 </html>
